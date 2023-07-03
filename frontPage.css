@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url(/bg.jpg);  
+}
+.logo-Quizz{
+    text-shadow: red -3px 0, cyan 3px 0;
+}
+
+.box-content{
+    margin-top: 200px;
+}
+.heading{
+    display: flex;
+    justify-content: center;
+    color: beige;
+}
+.sub-heading{
+   margin-left: 200px;
+   margin-right: 200px;
+   color: rgb(206, 137, 175);
+}
+span{
+    margin-left: 340px;
+}
+#startButton{
+    height: 37px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    background: rgb(252, 213, 88);
+    margin-left: 620px;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+} 
+#startButton:hover {
+    transform: scale(1.1);
+  }
