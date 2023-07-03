@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: url(/bg.jpg);  
+    background-image: url(bg.jpg);  
 }
 .logo-Quizz{
     text-shadow: red -3px 0, cyan 3px 0;
