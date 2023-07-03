@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
       alert("You have 10 question to answer with the timer running, best of luck for the game!"); // Show alert message
     });
 
-    var startButton = document.getElementById("startButton");
+    // var startButton = document.getElementById("startButton");
   
-    startButton?.addEventListener("click", function() {
-      // Redirect to the new HTML file
-      window.location.replace("index.html");
-    });
+    // startButton?.addEventListener("click", function() {
+    //   // Redirect to the new HTML file
+    //   window.location.replace("index.html");
+    // });
     
 
     // timer here
