@@ -88,4 +88,8 @@ body{
 .incorrect{
     background: rgb(247, 140, 140);
 }
+#truth-content{
+    margin-left: 18px;
+    font-size: 20px;
 
+}

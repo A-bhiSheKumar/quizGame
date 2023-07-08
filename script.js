@@ -14,29 +14,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // });
     
 
+   
     // timer here
     var duration = 10; // 30 seconds
     var timerElement = document.getElementById('timer');
+    let countdown ;
 
     function startTimer() {
+     
         // Start the countdown
-        var countdown = setInterval(function() {
-          var seconds = duration % 60;
-          var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-          timerElement.textContent = "00:" + formattedSeconds;
+            countdown = setInterval(function() {
+            var seconds = duration % 60;
+            var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+            timerElement.textContent = "00:" + formattedSeconds;
       
-          if (duration <= 0) {
-            clearInterval(countdown);
-            alert("Time's up! but still you can answer the question because(learning is more important than anything else)");
-            nextQuestion();
-          }
-      
-          duration--;
+            if (duration <= 0) {
+                clearInterval(countdown);
+                alert("Time's up! but still you can answer the question because(learning is more important than anything else)");
+                nextQuestion();
+            }
+            duration--;
         }, 1000);
+        
     }
-   
+
+    function resetTimer() {
+        clearInterval(countdown);
+        duration = 10; // Reset the duration to the initial value
+        startTimer(); // Start the timer again
+    }
     
-    // Your JavaScript code here
+    
+    //  JavaScript code here
     const questions = [
         {
          question: "What does CSS stand for?",
@@ -133,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const questionElement = document.getElementById("question");
     const answerButtons= document.getElementById("answer-buttons");
     const nextButton = document.getElementById("next-btn");
+    const truthContent = document.getElementById("truth-content");
     
     
     let currentQuestionIndex = 0;
@@ -170,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
             answerButtons.removeChild(answerButtons.firstChild);
         }
     }
-    
+
     
     function selectAnswer(e){
         const selectedBtn = e.target;
@@ -190,12 +200,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         nextButton.style.display = "block";
     }
+
+    
     
     function showScore(){
         resetState();
+        
         questionElement.innerHTML = `You Scored ${score} out of ${questions.length}`;
+        if(score < 5){
+            truthContent.innerHTML = "Need to work hard &#128533";
+            // Reset content when the button is clicked
+            nextButton.addEventListener("click", function() {
+                truthContent.innerHTML = "";
+            });
+        }
+        else if (score > 6 && score < 9){
+            truthContent.innerHTML = "Keep up the good work! &#128515";
+            nextButton.addEventListener("click", function() {
+                truthContent.innerHTML = "";
+            });
+        }
+        else if(score === 9){
+            truthContent.innerHTML = "Wow! You almost had a perfect score. 9 out of 10 is fantastic! &#128526";
+            nextButton.addEventListener("click", function() {
+                truthContent.innerHTML = "";
+            });
+        }
+        else{
+            truthContent.innerHTML = "Congratulations! You scored a perfect 10 out of 10.  &#129321";
+            nextButton.addEventListener("click" , function(){
+                truthContent.innerHTML = "";
+            })
+        }
+        quizComplete = true;
         nextButton.innerHTML = "Play Again";
         nextButton.style.display = "block";
+        
     }
     
     function handleNextButton(){
@@ -207,12 +247,15 @@ document.addEventListener('DOMContentLoaded', function() {
             showQuestion();
         }
         else{
+      
             alert("Quiz completed!");
             showScore();
+
         }
-        //timer 
+        
     }
-    
+
+   
     nextButton.addEventListener("click", ()=>{
         if(currentQuestionIndex < questions.length){
             handleNextButton();
@@ -220,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else{
             startQuiz();
         }
+        resetTimer(); // Call the resetTimer() function when the button is clic
     });
     
     startTimer();
